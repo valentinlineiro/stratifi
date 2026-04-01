@@ -45,6 +45,118 @@
   cursor: pointer;
 }
 
+// Confidence slider
+.confidence-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.confidence-slider {
+  flex: 1;
+  accent-color: var(--color-primary);
+  height: 4px;
+  cursor: pointer;
+}
+
+.confidence-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-primary);
+  min-width: 36px;
+  text-align: right;
+}
+
+// Axis score row
+.axis-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.axis-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.axis-label {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  width: 70px;
+  flex-shrink: 0;
+}
+
+.score-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.score-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-border);
+  background: none;
+  color: var(--color-text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+
+  &.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+  }
+}
+
+// Regret score
+.regret-row {
+  display: flex;
+  gap: 8px;
+}
+
+.regret-btn {
+  flex: 1;
+  padding: 10px 4px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: border-color 0.15s, background 0.15s;
+
+  span.regret-label {
+    font-size: 10px;
+    color: var(--color-text-muted);
+    font-family: inherit;
+  }
+
+  &.active {
+    border-color: var(--color-primary);
+    background: rgba(108, 99, 255, 0.1);
+  }
+}
+
+.hint-text {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  font-style: italic;
+  padding: 10px 12px;
+  background: var(--color-surface-high);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--color-primary);
+}
+
 .btn-ghost {
   flex: 1;
   padding: 12px;

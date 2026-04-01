@@ -31,8 +31,8 @@ export class ScenariosPage {
     this.scenarioService.scenarios().length
   );
 
-  async onAdd(data: { decisionId: string; title: string; notes: string }): Promise<void> {
-    await this.scenarioService.add(data.decisionId, data.title, data.notes);
+  async onAdd(data: { decisionId: string; title: string; notes: string; outcomes: Record<string, number>; confidence: number }): Promise<void> {
+    await this.scenarioService.add(data.decisionId, data.title, data.notes, data.outcomes, data.confidence);
     this.showSheet.set(false);
   }
 

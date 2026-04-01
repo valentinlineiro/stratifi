@@ -8,13 +8,8 @@
     @if (!preselectedDecisionId()) {
       <div class="field">
         <label class="field-label" for="decision">Decision</label>
-        <select
-          id="decision"
-          class="field-input field-select"
-          [ngModel]="decisionId()"
-          (ngModelChange)="onDecisionChange($event)"
-          name="decisionId"
-        >
+        <select id="decision" class="field-input field-select"
+          [ngModel]="decisionId()" (ngModelChange)="onDecisionChange($event)" name="decisionId">
           <option value="" disabled>Select a decision…</option>
           @for (d of decisions(); track d.id) {
             <option [value]="d.id">{{ d.title }}</option>
@@ -26,13 +21,8 @@
     @if (availableScenarios().length > 0) {
       <div class="field">
         <label class="field-label" for="scenario">Chosen scenario (optional)</label>
-        <select
-          id="scenario"
-          class="field-input field-select"
-          [ngModel]="scenarioId()"
-          (ngModelChange)="scenarioId.set($event)"
-          name="scenarioId"
-        >
+        <select id="scenario" class="field-input field-select"
+          [ngModel]="scenarioId()" (ngModelChange)="scenarioId.set($event)" name="scenarioId">
           <option value="">None</option>
           @for (s of availableScenarios(); track s.id) {
             <option [value]="s.id">{{ s.title }}</option>
@@ -42,16 +32,47 @@
     }
 
     <div class="field">
+      <p class="hint-text">💡 Would 80-year-old you regret not taking a different path?</p>
+    </div>
+
+    <div class="field">
       <label class="field-label" for="reflection">Reflection</label>
-      <textarea
-        id="reflection"
-        class="field-input field-textarea"
+      <textarea id="reflection" class="field-input field-textarea"
         placeholder="What happened? What did you learn? How do you feel about this decision now?"
-        [ngModel]="reflection()"
-        (ngModelChange)="reflection.set($event)"
-        name="reflection"
-        rows="4"
-      ></textarea>
+        [ngModel]="reflection()" (ngModelChange)="reflection.set($event)" name="reflection" rows="3">
+      </textarea>
+    </div>
+
+    <div class="field">
+      <label class="field-label">How do you feel about it?</label>
+      <div class="regret-row">
+        @for (opt of regretOptions; track opt.score) {
+          <button type="button" class="regret-btn"
+            [class.active]="regretScore() === opt.score"
+            (click)="regretScore.set(regretScore() === opt.score ? null : opt.score)">
+            {{ opt.emoji }}
+            <span class="regret-label">{{ opt.label }}</span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="field-label">How did it actually go? (optional)</label>
+      <div class="axis-rows">
+        @for (axis of axes; track axis.key) {
+          <div class="axis-row">
+            <span class="axis-label">{{ axis.label }}</span>
+            <div class="score-dots">
+              @for (n of scores; track n) {
+                <button type="button" class="score-dot"
+                  [class.active]="actualOutcomes()[axis.key] === n"
+                  (click)="setActualOutcome(axis.key, n)">{{ n }}</button>
+              }
+            </div>
+          </div>
+        }
+      </div>
     </div>
 
     <div class="sheet-actions">

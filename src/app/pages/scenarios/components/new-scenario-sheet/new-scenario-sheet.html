@@ -8,13 +8,8 @@
     @if (!preselectedDecisionId()) {
       <div class="field">
         <label class="field-label" for="decision">Decision</label>
-        <select
-          id="decision"
-          class="field-input field-select"
-          [ngModel]="decisionId()"
-          (ngModelChange)="decisionId.set($event)"
-          name="decisionId"
-        >
+        <select id="decision" class="field-input field-select"
+          [ngModel]="decisionId()" (ngModelChange)="decisionId.set($event)" name="decisionId">
           <option value="" disabled>Select a decision…</option>
           @for (d of decisions(); track d.id) {
             <option [value]="d.id">{{ d.title }}</option>
@@ -25,28 +20,44 @@
 
     <div class="field">
       <label class="field-label" for="title">What's this scenario?</label>
-      <input
-        id="title"
-        class="field-input"
-        type="text"
+      <input id="title" class="field-input" type="text"
         placeholder="e.g. Accept the offer, Stay and negotiate…"
-        [ngModel]="title()"
-        (ngModelChange)="title.set($event)"
-        name="title"
-      />
+        [ngModel]="title()" (ngModelChange)="title.set($event)" name="title" />
     </div>
 
     <div class="field">
       <label class="field-label" for="notes">Notes (optional)</label>
-      <textarea
-        id="notes"
-        class="field-input field-textarea"
+      <textarea id="notes" class="field-input field-textarea"
         placeholder="Key assumptions, trade-offs, risks…"
-        [ngModel]="notes()"
-        (ngModelChange)="notes.set($event)"
-        name="notes"
-        rows="3"
-      ></textarea>
+        [ngModel]="notes()" (ngModelChange)="notes.set($event)" name="notes" rows="2">
+      </textarea>
+    </div>
+
+    <div class="field">
+      <label class="field-label">Outcome scores (optional)</label>
+      <div class="axis-rows">
+        @for (axis of axes; track axis.key) {
+          <div class="axis-row">
+            <span class="axis-label">{{ axis.label }}</span>
+            <div class="score-dots">
+              @for (n of scores; track n) {
+                <button type="button" class="score-dot"
+                  [class.active]="outcomes()[axis.key] === n"
+                  (click)="setOutcome(axis.key, n)">{{ n }}</button>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="field-label">Confidence — {{ confidence() }}%</label>
+      <div class="confidence-row">
+        <input type="range" class="confidence-slider" min="0" max="100" step="5"
+          [ngModel]="confidence()" (ngModelChange)="confidence.set(+$event)" name="confidence" />
+        <span class="confidence-value">{{ confidence() }}%</span>
+      </div>
     </div>
 
     <div class="sheet-actions">

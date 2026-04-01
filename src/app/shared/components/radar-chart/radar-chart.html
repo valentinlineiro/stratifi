@@ -1,0 +1,40 @@
+<svg
+  class="radar"
+  [attr.width]="size()"
+  [attr.height]="size()"
+  [attr.viewBox]="'0 0 ' + size() + ' ' + size()"
+>
+  <!-- Grid polygons -->
+  @for (level of levels; track level) {
+    <polygon
+      class="radar-grid"
+      [attr.points]="gridPolygon(level)"
+    />
+  }
+
+  <!-- Axis lines -->
+  @for (axis of axes; track axis.key; let i = $index) {
+    <line
+      class="radar-axis"
+      [attr.x1]="cx" [attr.y1]="cy"
+      [attr.x2]="point(i, 1).x" [attr.y2]="point(i, 1).y"
+    />
+  }
+
+  <!-- Data polygon -->
+  <polygon
+    class="radar-data"
+    [attr.points]="dataPolygon()"
+  />
+
+  <!-- Axis labels -->
+  @for (axis of axes; track axis.key; let i = $index) {
+    <text
+      class="radar-label"
+      [attr.x]="labelPos(i).x"
+      [attr.y]="labelPos(i).y"
+      [attr.text-anchor]="textAnchor(i)"
+      [attr.dominant-baseline]="dominantBaseline(i)"
+    >{{ axis.label }}</text>
+  }
+</svg>

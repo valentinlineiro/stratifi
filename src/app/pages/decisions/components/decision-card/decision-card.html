@@ -1,4 +1,4 @@
-<article class="card">
+<article class="card" appSwipeDelete (deleted)="delete.emit(decision().id)">
   <a class="card-body" [routerLink]="['/decisions', decision().id]">
     <h2 class="card-title">{{ decision().title }}</h2>
     @if (decision().description) {
@@ -6,7 +6,10 @@
     }
   </a>
   <footer class="card-footer">
-    <span class="card-date">{{ decision().createdAt | date: 'MMM d, y' }}</span>
+    <div class="footer-left">
+      <span class="card-date">{{ decision().createdAt | date: 'MMM d, y' }}</span>
+      <span class="status-badge status-badge--{{ decision().status }}">{{ decision().status }}</span>
+    </div>
     <button
       class="btn-delete"
       aria-label="Delete decision"

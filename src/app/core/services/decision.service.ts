@@ -16,9 +16,14 @@ export class DecisionService {
       id: crypto.randomUUID(),
       title: title.trim(),
       description: description.trim(),
+      status: 'active',
       createdAt: new Date(),
       updatedAt: new Date(),
     });
+  }
+
+  async updateStatus(id: string, status: Decision['status']): Promise<void> {
+    await db.decisions.update(id, { status, updatedAt: new Date() });
   }
 
   async remove(id: string): Promise<void> {

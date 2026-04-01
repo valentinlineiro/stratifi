@@ -1,12 +1,22 @@
 @if (decision(); as d) {
   <div class="page">
 
-    @if (d.description) {
-      <div class="decision-meta">
-        <p class="decision-desc">{{ d.description }}</p>
-        <span class="decision-date">Added {{ d.createdAt | date: 'MMMM d, y' }}</span>
+    <div class="decision-meta">
+      <div class="meta-top">
+        @if (d.description) {
+          <p class="decision-desc">{{ d.description }}</p>
+        }
+        <select class="status-select"
+          [ngModel]="d.status"
+          (ngModelChange)="onStatusChange($event)"
+          name="status">
+          <option value="active">Active</option>
+          <option value="decided">Decided</option>
+          <option value="archived">Archived</option>
+        </select>
       </div>
-    }
+      <span class="decision-date">Added {{ d.createdAt | date: 'MMMM d, y' }}</span>
+    </div>
 
     <!-- Scenarios -->
     <section class="detail-section">

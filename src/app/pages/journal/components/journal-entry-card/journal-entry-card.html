@@ -1,7 +1,12 @@
-<article class="entry-card">
+<article class="entry-card" appSwipeDelete (deleted)="delete.emit(data().entry.id)">
   <div class="entry-date-col">
     <span class="entry-day">{{ data().entry.createdAt | date: 'd' }}</span>
     <span class="entry-month">{{ data().entry.createdAt | date: 'MMM' }}</span>
+    @if (data().entry.regretScore) {
+      <span class="regret-emoji" [title]="regretLabel(data().entry.regretScore!)">
+        {{ regretEmoji(data().entry.regretScore!) }}
+      </span>
+    }
   </div>
 
   <div class="entry-body">

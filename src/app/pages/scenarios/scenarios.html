@@ -18,7 +18,8 @@
     <div class="empty-state">
       <span class="material-symbols-rounded empty-icon">fork_right</span>
       <p class="empty-title">No scenarios yet</p>
-      <p class="empty-sub">Tap + to explore different paths for your decisions</p>
+      <p class="empty-sub">Explore different paths for your decisions</p>
+      <button class="empty-cta" (click)="showSheet.set(true)">Add first scenario</button>
     </div>
   } @else {
     <div class="groups">

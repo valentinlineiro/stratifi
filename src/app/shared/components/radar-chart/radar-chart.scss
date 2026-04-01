@@ -1,0 +1,26 @@
+.radar { display: block; overflow: visible; }
+
+.radar-grid {
+  fill: none;
+  stroke: var(--color-border);
+  stroke-width: 1;
+}
+
+.radar-axis {
+  stroke: var(--color-border);
+  stroke-width: 1;
+}
+
+.radar-data {
+  fill: rgba(108, 99, 255, 0.2);
+  stroke: var(--color-primary);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.radar-label {
+  font-size: 9px;
+  font-family: inherit;
+  fill: var(--color-text-muted);
+  font-weight: 500;
+}

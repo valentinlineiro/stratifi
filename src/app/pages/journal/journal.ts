@@ -36,8 +36,10 @@ export class JournalPage {
     decisionId: string;
     reflection: string;
     chosenScenarioId: string | null;
+    regretScore: number | null;
+    actualOutcomes: Record<string, number>;
   }): Promise<void> {
-    await this.journalService.add(data.decisionId, data.reflection, data.chosenScenarioId);
+    await this.journalService.add(data.decisionId, data.reflection, data.chosenScenarioId, data.regretScore, data.actualOutcomes);
     this.showSheet.set(false);
   }
 

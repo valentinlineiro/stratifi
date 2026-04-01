@@ -11,6 +11,8 @@
   bottom: 0;
   left: 0;
   right: 0;
+  max-height: 92dvh;
+  overflow-y: auto;
   background: var(--color-surface);
   border-radius: var(--radius) var(--radius) 0 0;
   border-top: 1px solid var(--color-border);

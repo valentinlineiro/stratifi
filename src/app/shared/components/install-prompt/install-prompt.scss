@@ -1,0 +1,53 @@
+.install-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 10px 16px;
+  animation: slide-down 0.25s ease;
+}
+
+.install-icon {
+  font-size: 20px;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.install-text {
+  flex: 1;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  min-width: 0;
+}
+
+.install-btn {
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.install-close {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 2px;
+  flex-shrink: 0;
+
+  .material-symbols-rounded { font-size: 18px; }
+}
+
+@keyframes slide-down {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}

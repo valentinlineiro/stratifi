@@ -62,3 +62,88 @@
   color: var(--color-text-muted);
   max-width: 220px;
 }
+
+.empty-cta {
+  margin-top: 8px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 20px;
+  background: var(--color-primary);
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover { opacity: 0.85; }
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-icon--ghost {
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+
+  &:hover {
+    background: var(--color-surface-high);
+    color: var(--color-text);
+  }
+}
+
+// Status filter chips
+.filter-chips {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: none;
+  color: var(--color-text-muted);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+
+  &.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+
+    .chip-count { color: rgba(255,255,255,0.7); }
+  }
+}
+
+.chip-count {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+// Status badge (on decision cards)
+.status-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+  padding: 2px 8px;
+  border-radius: 20px;
+
+  &--active   { background: rgba(72, 199, 142, 0.15); color: #48c78e; }
+  &--decided  { background: rgba(108, 99, 255, 0.15); color: var(--color-primary); }
+  &--archived { background: var(--color-surface-high); color: var(--color-text-muted); }
+}

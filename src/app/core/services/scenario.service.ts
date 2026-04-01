@@ -11,13 +11,20 @@ export class ScenarioService {
     { initialValue: [] as Scenario[] }
   );
 
-  async add(decisionId: string, title: string, notes: string): Promise<void> {
+  async add(
+    decisionId: string,
+    title: string,
+    notes: string,
+    outcomes: Record<string, number> = {},
+    confidence = 50
+  ): Promise<void> {
     await db.scenarios.add({
       id: crypto.randomUUID(),
       decisionId,
       title: title.trim(),
       notes: notes.trim(),
-      outcomes: {},
+      outcomes,
+      confidence,
       createdAt: new Date(),
     });
   }

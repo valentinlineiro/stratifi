@@ -1,6 +1,7 @@
 import { Component, computed, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { DecisionService } from '../../../core/services/decision.service';
 import { ScenarioService } from '../../../core/services/scenario.service';
 import { JournalService } from '../../../core/services/journal.service';
@@ -9,11 +10,13 @@ import { ScenarioCardComponent } from '../../scenarios/components/scenario-card/
 import { NewScenarioSheetComponent } from '../../scenarios/components/new-scenario-sheet/new-scenario-sheet';
 import { JournalEntryCardComponent, type EnrichedEntry } from '../../journal/components/journal-entry-card/journal-entry-card';
 import { NewEntrySheetComponent } from '../../journal/components/new-entry-sheet/new-entry-sheet';
+import type { Decision } from '../../../core/db/database';
 
 @Component({
   selector: 'app-decision-detail',
   imports: [
     DatePipe,
+    FormsModule,
     ScenarioCardComponent,
     NewScenarioSheetComponent,
     JournalEntryCardComponent,
@@ -55,21 +58,23 @@ export class DecisionDetailPage implements OnInit, OnDestroy {
 
   readonly decisions = this.decisionService.decisions;
   readonly allScenarios = this.scenarioService.scenarios;
-
   readonly showScenarioSheet = signal(false);
   readonly showJournalSheet = signal(false);
 
   ngOnInit(): void {
-    const title = this.decision()?.title ?? 'Decision';
-    this.header.setDetail(title);
+    this.header.setDetail(this.decision()?.title ?? 'Decision');
   }
 
   ngOnDestroy(): void {
     this.header.reset();
   }
 
-  async onAddScenario(data: { decisionId: string; title: string; notes: string }): Promise<void> {
-    await this.scenarioService.add(data.decisionId, data.title, data.notes);
+  async onStatusChange(status: Decision['status']): Promise<void> {
+    await this.decisionService.updateStatus(this.decisionId, status);
+  }
+
+  async onAddScenario(data: { decisionId: string; title: string; notes: string; outcomes: Record<string, number>; confidence: number }): Promise<void> {
+    await this.scenarioService.add(data.decisionId, data.title, data.notes, data.outcomes, data.confidence);
     this.showScenarioSheet.set(false);
   }
 
@@ -77,8 +82,8 @@ export class DecisionDetailPage implements OnInit, OnDestroy {
     await this.scenarioService.remove(id);
   }
 
-  async onAddEntry(data: { decisionId: string; reflection: string; chosenScenarioId: string | null }): Promise<void> {
-    await this.journalService.add(data.decisionId, data.reflection, data.chosenScenarioId);
+  async onAddEntry(data: { decisionId: string; reflection: string; chosenScenarioId: string | null; regretScore: number | null; actualOutcomes: Record<string, number> }): Promise<void> {
+    await this.journalService.add(data.decisionId, data.reflection, data.chosenScenarioId, data.regretScore, data.actualOutcomes);
     this.showJournalSheet.set(false);
   }
 

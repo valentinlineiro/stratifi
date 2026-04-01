@@ -14,13 +14,17 @@ export class JournalService {
   async add(
     decisionId: string,
     reflection: string,
-    chosenScenarioId: string | null
+    chosenScenarioId: string | null,
+    regretScore: number | null = null,
+    actualOutcomes: Record<string, number> = {}
   ): Promise<void> {
     await db.journal.add({
       id: crypto.randomUUID(),
       decisionId,
       chosenScenarioId,
       reflection: reflection.trim(),
+      regretScore,
+      actualOutcomes,
       createdAt: new Date(),
     });
   }

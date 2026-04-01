@@ -18,7 +18,8 @@
     <div class="empty-state">
       <span class="material-symbols-rounded empty-icon">edit_note</span>
       <p class="empty-title">No entries yet</p>
-      <p class="empty-sub">Tap + to reflect on a decision you've made</p>
+      <p class="empty-sub">Reflect on a decision you've made</p>
+      <button class="empty-cta" (click)="showSheet.set(true)">Write first entry</button>
     </div>
   } @else {
     <div class="entries-list">

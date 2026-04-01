@@ -46,6 +46,12 @@
   justify-content: space-between;
 }
 
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .card-date {
   font-size: 12px;
   color: var(--color-text-muted);
