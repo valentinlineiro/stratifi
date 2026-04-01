@@ -1,0 +1,60 @@
+<div class="sheet-backdrop" (click)="cancel.emit()"></div>
+
+<div class="sheet">
+  <div class="sheet-handle"></div>
+  <h2 class="sheet-title">New Journal Entry</h2>
+
+  <form class="sheet-form" (ngSubmit)="submit()">
+    <div class="field">
+      <label class="field-label" for="decision">Decision</label>
+      <select
+        id="decision"
+        class="field-input field-select"
+        [ngModel]="decisionId()"
+        (ngModelChange)="onDecisionChange($event)"
+        name="decisionId"
+      >
+        <option value="" disabled>Select a decision…</option>
+        @for (d of decisions(); track d.id) {
+          <option [value]="d.id">{{ d.title }}</option>
+        }
+      </select>
+    </div>
+
+    @if (availableScenarios().length > 0) {
+      <div class="field">
+        <label class="field-label" for="scenario">Chosen scenario (optional)</label>
+        <select
+          id="scenario"
+          class="field-input field-select"
+          [ngModel]="scenarioId()"
+          (ngModelChange)="scenarioId.set($event)"
+          name="scenarioId"
+        >
+          <option value="">None</option>
+          @for (s of availableScenarios(); track s.id) {
+            <option [value]="s.id">{{ s.title }}</option>
+          }
+        </select>
+      </div>
+    }
+
+    <div class="field">
+      <label class="field-label" for="reflection">Reflection</label>
+      <textarea
+        id="reflection"
+        class="field-input field-textarea"
+        placeholder="What happened? What did you learn? How do you feel about this decision now?"
+        [ngModel]="reflection()"
+        (ngModelChange)="reflection.set($event)"
+        name="reflection"
+        rows="4"
+      ></textarea>
+    </div>
+
+    <div class="sheet-actions">
+      <button type="button" class="btn-ghost" (click)="cancel.emit()">Cancel</button>
+      <button type="submit" class="btn-primary" [disabled]="!isValid">Save Entry</button>
+    </div>
+  </form>
+</div>

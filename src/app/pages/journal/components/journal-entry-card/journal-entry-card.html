@@ -1,0 +1,27 @@
+<article class="entry-card">
+  <div class="entry-date-col">
+    <span class="entry-day">{{ data().entry.createdAt | date: 'd' }}</span>
+    <span class="entry-month">{{ data().entry.createdAt | date: 'MMM' }}</span>
+  </div>
+
+  <div class="entry-body">
+    <div class="entry-meta">
+      <span class="entry-decision">{{ data().decisionTitle }}</span>
+      @if (data().scenarioTitle) {
+        <span class="entry-scenario">
+          <span class="material-symbols-rounded">check_small</span>
+          {{ data().scenarioTitle }}
+        </span>
+      }
+    </div>
+    <p class="entry-reflection">{{ data().entry.reflection }}</p>
+  </div>
+
+  <button
+    class="btn-delete"
+    aria-label="Delete entry"
+    (click)="delete.emit(data().entry.id)"
+  >
+    <span class="material-symbols-rounded">delete</span>
+  </button>
+</article>

@@ -1,0 +1,40 @@
+<div class="sheet-backdrop" (click)="cancel.emit()"></div>
+
+<div class="sheet">
+  <div class="sheet-handle"></div>
+  <h2 class="sheet-title">New Decision</h2>
+
+  <form class="sheet-form" (ngSubmit)="submit()">
+    <div class="field">
+      <label class="field-label" for="title">What are you deciding?</label>
+      <input
+        id="title"
+        class="field-input"
+        type="text"
+        placeholder="e.g. Change careers, Move to another city…"
+        [ngModel]="title()"
+        (ngModelChange)="title.set($event)"
+        name="title"
+        autofocus
+      />
+    </div>
+
+    <div class="field">
+      <label class="field-label" for="desc">Context (optional)</label>
+      <textarea
+        id="desc"
+        class="field-input field-textarea"
+        placeholder="Brief background or what's driving this decision…"
+        [ngModel]="description()"
+        (ngModelChange)="description.set($event)"
+        name="description"
+        rows="3"
+      ></textarea>
+    </div>
+
+    <div class="sheet-actions">
+      <button type="button" class="btn-ghost" (click)="cancel.emit()">Cancel</button>
+      <button type="submit" class="btn-primary" [disabled]="!title().trim()">Create</button>
+    </div>
+  </form>
+</div>

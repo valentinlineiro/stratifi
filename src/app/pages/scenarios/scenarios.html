@@ -1,0 +1,48 @@
+<div class="page">
+  <div class="page-header">
+    <h1 class="page-title">Scenarios</h1>
+    @if (decisions().length > 0) {
+      <button class="btn-icon" aria-label="New scenario" (click)="showSheet.set(true)">
+        <span class="material-symbols-rounded">add</span>
+      </button>
+    }
+  </div>
+
+  @if (decisions().length === 0) {
+    <div class="empty-state">
+      <span class="material-symbols-rounded empty-icon">account_tree</span>
+      <p class="empty-title">No decisions yet</p>
+      <p class="empty-sub">Create a decision first, then branch into scenarios</p>
+    </div>
+  } @else if (totalScenarios() === 0) {
+    <div class="empty-state">
+      <span class="material-symbols-rounded empty-icon">fork_right</span>
+      <p class="empty-title">No scenarios yet</p>
+      <p class="empty-sub">Tap + to explore different paths for your decisions</p>
+    </div>
+  } @else {
+    <div class="groups">
+      @for (group of groups(); track group.decision.id) {
+        <section class="group">
+          <h2 class="group-title">{{ group.decision.title }}</h2>
+          <div class="group-scenarios">
+            @for (scenario of group.scenarios; track scenario.id) {
+              <app-scenario-card
+                [scenario]="scenario"
+                (delete)="onDelete($event)"
+              />
+            }
+          </div>
+        </section>
+      }
+    </div>
+  }
+</div>
+
+@if (showSheet()) {
+  <app-new-scenario-sheet
+    [decisions]="decisions()"
+    (confirm)="onAdd($event)"
+    (cancel)="showSheet.set(false)"
+  />
+}

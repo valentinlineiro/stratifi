@@ -1,0 +1,56 @@
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  animation: fade-in 0.2s ease;
+}
+
+.sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-surface);
+  border-radius: var(--radius) var(--radius) 0 0;
+  border-top: 1px solid var(--color-border);
+  padding: 12px 20px calc(32px + env(safe-area-inset-bottom));
+  z-index: 201;
+  animation: slide-up 0.25s ease;
+}
+
+.sheet-handle {
+  width: 36px;
+  height: 4px;
+  background: var(--color-border);
+  border-radius: 2px;
+  margin: 0 auto 20px;
+}
+
+.sheet-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.sheet-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sheet-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}

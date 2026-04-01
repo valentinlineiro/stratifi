@@ -1,0 +1,18 @@
+<div class="scenario-card">
+  <div class="card-accent"></div>
+  <div class="card-body">
+    <div class="card-top">
+      <h3 class="card-title">{{ scenario().title }}</h3>
+      <button
+        class="btn-delete"
+        aria-label="Delete scenario"
+        (click)="delete.emit(scenario().id)"
+      >
+        <span class="material-symbols-rounded">close</span>
+      </button>
+    </div>
+    @if (scenario().notes) {
+      <p class="card-notes">{{ scenario().notes }}</p>
+    }
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="sheet-backdrop" (click)="cancel.emit()"></div>
+
+<div class="sheet">
+  <div class="sheet-handle"></div>
+  <h2 class="sheet-title">New Scenario</h2>
+
+  <form class="sheet-form" (ngSubmit)="submit()">
+    <div class="field">
+      <label class="field-label" for="decision">Decision</label>
+      <select
+        id="decision"
+        class="field-input field-select"
+        [ngModel]="decisionId()"
+        (ngModelChange)="decisionId.set($event)"
+        name="decisionId"
+      >
+        <option value="" disabled>Select a decision…</option>
+        @for (d of decisions(); track d.id) {
+          <option [value]="d.id">{{ d.title }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="field">
+      <label class="field-label" for="title">What's this scenario?</label>
+      <input
+        id="title"
+        class="field-input"
+        type="text"
+        placeholder="e.g. Accept the offer, Stay and negotiate…"
+        [ngModel]="title()"
+        (ngModelChange)="title.set($event)"
+        name="title"
+      />
+    </div>
+
+    <div class="field">
+      <label class="field-label" for="notes">Notes (optional)</label>
+      <textarea
+        id="notes"
+        class="field-input field-textarea"
+        placeholder="Key assumptions, trade-offs, risks…"
+        [ngModel]="notes()"
+        (ngModelChange)="notes.set($event)"
+        name="notes"
+        rows="3"
+      ></textarea>
+    </div>
+
+    <div class="sheet-actions">
+      <button type="button" class="btn-ghost" (click)="cancel.emit()">Cancel</button>
+      <button type="submit" class="btn-primary" [disabled]="!isValid">Add Scenario</button>
+    </div>
+  </form>
+</div>

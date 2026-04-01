@@ -1,0 +1,18 @@
+<article class="card">
+  <div class="card-body">
+    <h2 class="card-title">{{ decision().title }}</h2>
+    @if (decision().description) {
+      <p class="card-desc">{{ decision().description }}</p>
+    }
+  </div>
+  <footer class="card-footer">
+    <span class="card-date">{{ decision().createdAt | date: 'MMM d, y' }}</span>
+    <button
+      class="btn-delete"
+      aria-label="Delete decision"
+      (click)="delete.emit(decision().id)"
+    >
+      <span class="material-symbols-rounded">delete</span>
+    </button>
+  </footer>
+</article>

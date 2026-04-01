@@ -1,0 +1,66 @@
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.2s;
+
+  &:hover {
+    border-color: var(--color-primary-dim);
+  }
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card-title {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.card-desc {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-date {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.btn-delete {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--color-accent);
+  }
+
+  .material-symbols-rounded {
+    font-size: 18px;
+  }
+}

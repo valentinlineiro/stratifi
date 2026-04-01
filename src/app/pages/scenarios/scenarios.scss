@@ -1,0 +1,22 @@
+@use '../page';
+
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.group-title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--color-text-muted);
+  margin-bottom: 10px;
+}
+
+.group-scenarios {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
