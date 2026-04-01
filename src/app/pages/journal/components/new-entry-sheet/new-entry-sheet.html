@@ -5,21 +5,23 @@
   <h2 class="sheet-title">New Journal Entry</h2>
 
   <form class="sheet-form" (ngSubmit)="submit()">
-    <div class="field">
-      <label class="field-label" for="decision">Decision</label>
-      <select
-        id="decision"
-        class="field-input field-select"
-        [ngModel]="decisionId()"
-        (ngModelChange)="onDecisionChange($event)"
-        name="decisionId"
-      >
-        <option value="" disabled>Select a decision…</option>
-        @for (d of decisions(); track d.id) {
-          <option [value]="d.id">{{ d.title }}</option>
-        }
-      </select>
-    </div>
+    @if (!preselectedDecisionId()) {
+      <div class="field">
+        <label class="field-label" for="decision">Decision</label>
+        <select
+          id="decision"
+          class="field-input field-select"
+          [ngModel]="decisionId()"
+          (ngModelChange)="onDecisionChange($event)"
+          name="decisionId"
+        >
+          <option value="" disabled>Select a decision…</option>
+          @for (d of decisions(); track d.id) {
+            <option [value]="d.id">{{ d.title }}</option>
+          }
+        </select>
+      </div>
+    }
 
     @if (availableScenarios().length > 0) {
       <div class="field">

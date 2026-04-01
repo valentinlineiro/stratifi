@@ -1,4 +1,4 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, input, OnInit, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import type { Decision } from '../../../../core/db/database';
 
@@ -8,8 +8,9 @@ import type { Decision } from '../../../../core/db/database';
   templateUrl: './new-scenario-sheet.html',
   styleUrl: './new-scenario-sheet.scss',
 })
-export class NewScenarioSheetComponent {
+export class NewScenarioSheetComponent implements OnInit {
   decisions = input.required<Decision[]>();
+  preselectedDecisionId = input('');
   confirm = output<{ decisionId: string; title: string; notes: string }>();
   cancel = output<void>();
 
@@ -17,17 +18,19 @@ export class NewScenarioSheetComponent {
   title = signal('');
   notes = signal('');
 
+  ngOnInit(): void {
+    if (this.preselectedDecisionId()) {
+      this.decisionId.set(this.preselectedDecisionId());
+    }
+  }
+
   get isValid(): boolean {
     return !!this.decisionId().trim() && !!this.title().trim();
   }
 
   submit(): void {
     if (!this.isValid) return;
-    this.confirm.emit({
-      decisionId: this.decisionId(),
-      title: this.title(),
-      notes: this.notes(),
-    });
+    this.confirm.emit({ decisionId: this.decisionId(), title: this.title(), notes: this.notes() });
     this.title.set('');
     this.notes.set('');
     this.decisionId.set('');

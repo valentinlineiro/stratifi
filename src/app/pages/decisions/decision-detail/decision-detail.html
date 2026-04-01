@@ -1,0 +1,71 @@
+@if (decision(); as d) {
+  <div class="page">
+
+    @if (d.description) {
+      <div class="decision-meta">
+        <p class="decision-desc">{{ d.description }}</p>
+        <span class="decision-date">Added {{ d.createdAt | date: 'MMMM d, y' }}</span>
+      </div>
+    }
+
+    <!-- Scenarios -->
+    <section class="detail-section">
+      <div class="section-header">
+        <h2 class="section-title">Scenarios</h2>
+        <button class="btn-icon btn-icon--sm" aria-label="Add scenario" (click)="showScenarioSheet.set(true)">
+          <span class="material-symbols-rounded">add</span>
+        </button>
+      </div>
+
+      @if (scenarios().length === 0) {
+        <p class="section-empty">No scenarios yet — add one to explore your options.</p>
+      } @else {
+        <div class="section-list">
+          @for (s of scenarios(); track s.id) {
+            <app-scenario-card [scenario]="s" (delete)="onDeleteScenario($event)" />
+          }
+        </div>
+      }
+    </section>
+
+    <!-- Journal -->
+    <section class="detail-section">
+      <div class="section-header">
+        <h2 class="section-title">Journal</h2>
+        <button class="btn-icon btn-icon--sm" aria-label="Add journal entry" (click)="showJournalSheet.set(true)">
+          <span class="material-symbols-rounded">add</span>
+        </button>
+      </div>
+
+      @if (enrichedEntries().length === 0) {
+        <p class="section-empty">No entries yet — log a reflection once you've decided.</p>
+      } @else {
+        <div class="section-list">
+          @for (item of enrichedEntries(); track item.entry.id) {
+            <app-journal-entry-card [data]="item" (delete)="onDeleteEntry($event)" />
+          }
+        </div>
+      }
+    </section>
+
+  </div>
+}
+
+@if (showScenarioSheet()) {
+  <app-new-scenario-sheet
+    [decisions]="decisions()"
+    [preselectedDecisionId]="decisionId"
+    (confirm)="onAddScenario($event)"
+    (cancel)="showScenarioSheet.set(false)"
+  />
+}
+
+@if (showJournalSheet()) {
+  <app-new-entry-sheet
+    [decisions]="decisions()"
+    [scenarios]="allScenarios()"
+    [preselectedDecisionId]="decisionId"
+    (confirm)="onAddEntry($event)"
+    (cancel)="showJournalSheet.set(false)"
+  />
+}

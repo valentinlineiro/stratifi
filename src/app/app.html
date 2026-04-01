@@ -1,6 +1,13 @@
 <div class="app-shell">
   <header class="app-header">
-    <span class="app-logo">stratifi</span>
+    @if (header.backPath()) {
+      <a class="btn-back" [routerLink]="header.backPath()" aria-label="Go back">
+        <span class="material-symbols-rounded">arrow_back</span>
+      </a>
+    }
+    <span class="app-title" [class.is-logo]="!header.backPath()">
+      {{ header.title() }}
+    </span>
   </header>
 
   <main class="app-content">

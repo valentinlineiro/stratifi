@@ -8,6 +8,11 @@ export const routes: Routes = [
       import('./pages/decisions/decisions').then((m) => m.DecisionsPage),
   },
   {
+    path: 'decisions/:id',
+    loadComponent: () =>
+      import('./pages/decisions/decision-detail/decision-detail').then((m) => m.DecisionDetailPage),
+  },
+  {
     path: 'scenarios',
     loadComponent: () =>
       import('./pages/scenarios/scenarios').then((m) => m.ScenariosPage),

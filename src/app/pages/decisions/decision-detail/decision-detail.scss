@@ -1,0 +1,64 @@
+@use '../../page';
+
+.decision-meta {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.decision-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.decision-date {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.detail-section {
+  margin-bottom: 28px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--color-text-muted);
+}
+
+.btn-icon--sm {
+  width: 30px;
+  height: 30px;
+
+  .material-symbols-rounded {
+    font-size: 16px;
+  }
+}
+
+.section-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-empty {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  font-style: italic;
+  padding: 4px 0;
+}

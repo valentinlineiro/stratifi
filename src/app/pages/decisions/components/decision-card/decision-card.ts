@@ -1,10 +1,11 @@
 import { Component, input, output } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import type { Decision } from '../../../../core/db/database';
 
 @Component({
   selector: 'app-decision-card',
-  imports: [DatePipe],
+  imports: [DatePipe, RouterLink],
   templateUrl: './decision-card.html',
   styleUrl: './decision-card.scss',
 })

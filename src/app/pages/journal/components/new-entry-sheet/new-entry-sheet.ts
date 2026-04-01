@@ -1,4 +1,4 @@
-import { Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, input, OnInit, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import type { Decision, Scenario } from '../../../../core/db/database';
 
@@ -8,9 +8,10 @@ import type { Decision, Scenario } from '../../../../core/db/database';
   templateUrl: './new-entry-sheet.html',
   styleUrl: './new-entry-sheet.scss',
 })
-export class NewEntrySheetComponent {
+export class NewEntrySheetComponent implements OnInit {
   decisions = input.required<Decision[]>();
   scenarios = input.required<Scenario[]>();
+  preselectedDecisionId = input('');
   confirm = output<{ decisionId: string; reflection: string; chosenScenarioId: string | null }>();
   cancel = output<void>();
 
@@ -21,6 +22,12 @@ export class NewEntrySheetComponent {
   readonly availableScenarios = computed(() =>
     this.scenarios().filter((s) => s.decisionId === this.decisionId())
   );
+
+  ngOnInit(): void {
+    if (this.preselectedDecisionId()) {
+      this.decisionId.set(this.preselectedDecisionId());
+    }
+  }
 
   onDecisionChange(id: string): void {
     this.decisionId.set(id);
