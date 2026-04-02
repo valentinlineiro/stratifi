@@ -1,6 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { DecisionService } from '../../core/services/decision.service';
 import { DataService } from '../../core/services/data.service';
+import { I18nService } from '../../core/i18n/i18n.service';
 import { DecisionCardComponent } from './components/decision-card/decision-card';
 import { NewDecisionSheetComponent } from './components/new-decision-sheet/new-decision-sheet';
 import type { Decision } from '../../core/db/database';
@@ -16,17 +17,18 @@ type StatusFilter = 'all' | Decision['status'];
 export class DecisionsPage {
   private readonly decisionService = inject(DecisionService);
   readonly dataService = inject(DataService);
+  readonly t = inject(I18nService).t;
 
   readonly decisions = this.decisionService.decisions;
   readonly showSheet = signal(false);
   readonly statusFilter = signal<StatusFilter>('all');
 
-  readonly filters: { value: StatusFilter; label: string }[] = [
-    { value: 'all',      label: 'All'      },
-    { value: 'active',   label: 'Active'   },
-    { value: 'decided',  label: 'Decided'  },
-    { value: 'archived', label: 'Archived' },
-  ];
+  readonly filters = computed<{ value: StatusFilter; label: string }[]>(() => [
+    { value: 'all',      label: this.t().common.all      },
+    { value: 'active',   label: this.t().status.active   },
+    { value: 'decided',  label: this.t().status.decided  },
+    { value: 'archived', label: this.t().status.archived },
+  ]);
 
   readonly filteredDecisions = computed(() => {
     const f = this.statusFilter();
@@ -54,7 +56,7 @@ export class DecisionsPage {
     try {
       await this.dataService.import(file);
     } catch {
-      alert('Import failed — make sure the file is a valid Stratifi backup.');
+      alert(this.t().decisions.importError);
     }
     (event.target as HTMLInputElement).value = '';
   }

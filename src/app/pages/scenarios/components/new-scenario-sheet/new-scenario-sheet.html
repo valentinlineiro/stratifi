@@ -2,15 +2,15 @@
 
 <div class="sheet">
   <div class="sheet-handle"></div>
-  <h2 class="sheet-title">New Scenario</h2>
+  <h2 class="sheet-title">{{ t().scenarios.newTitle }}</h2>
 
   <form class="sheet-form" (ngSubmit)="submit()">
     @if (!preselectedDecisionId()) {
       <div class="field">
-        <label class="field-label" for="decision">Decision</label>
+        <label class="field-label" for="decision">{{ t().scenarios.decision }}</label>
         <select id="decision" class="field-input field-select"
           [ngModel]="decisionId()" (ngModelChange)="decisionId.set($event)" name="decisionId">
-          <option value="" disabled>Select a decision…</option>
+          <option value="" disabled>{{ t().common.selectDecision }}</option>
           @for (d of decisions(); track d.id) {
             <option [value]="d.id">{{ d.title }}</option>
           }
@@ -19,26 +19,26 @@
     }
 
     <div class="field">
-      <label class="field-label" for="title">What's this scenario?</label>
+      <label class="field-label" for="title">{{ t().scenarios.question }}</label>
       <input id="title" class="field-input" type="text"
-        placeholder="e.g. Accept the offer, Stay and negotiate…"
+        [placeholder]="t().scenarios.questionPlaceholder"
         [ngModel]="title()" (ngModelChange)="title.set($event)" name="title" />
     </div>
 
     <div class="field">
-      <label class="field-label" for="notes">Notes (optional)</label>
+      <label class="field-label" for="notes">{{ t().scenarios.notes }}</label>
       <textarea id="notes" class="field-input field-textarea"
-        placeholder="Key assumptions, trade-offs, risks…"
+        [placeholder]="t().scenarios.notesPlaceholder"
         [ngModel]="notes()" (ngModelChange)="notes.set($event)" name="notes" rows="2">
       </textarea>
     </div>
 
     <div class="field">
-      <label class="field-label">Outcome scores (optional)</label>
+      <label class="field-label">{{ t().scenarios.outcomeScores }}</label>
       <div class="axis-rows">
         @for (axis of axes; track axis.key) {
           <div class="axis-row">
-            <span class="axis-label">{{ axis.label }}</span>
+            <span class="axis-label">{{ $any(t().outcomes)[axis.key] }}</span>
             <div class="score-dots">
               @for (n of scores; track n) {
                 <button type="button" class="score-dot"
@@ -52,7 +52,7 @@
     </div>
 
     <div class="field">
-      <label class="field-label">Confidence — {{ confidence() }}%</label>
+      <label class="field-label">{{ t().scenarios.confidenceLabel }} — {{ confidence() }}%</label>
       <div class="confidence-row">
         <input type="range" class="confidence-slider" min="0" max="100" step="5"
           [ngModel]="confidence()" (ngModelChange)="confidence.set(+$event)" name="confidence" />
@@ -61,8 +61,8 @@
     </div>
 
     <div class="sheet-actions">
-      <button type="button" class="btn-ghost" (click)="cancel.emit()">Cancel</button>
-      <button type="submit" class="btn-primary" [disabled]="!isValid">Add Scenario</button>
+      <button type="button" class="btn-ghost" (click)="cancel.emit()">{{ t().common.cancel }}</button>
+      <button type="submit" class="btn-primary" [disabled]="!isValid">{{ t().scenarios.addBtn }}</button>
     </div>
   </form>
 </div>

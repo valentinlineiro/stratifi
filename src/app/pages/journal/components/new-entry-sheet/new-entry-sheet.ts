@@ -1,15 +1,16 @@
-import { Component, computed, input, OnInit, output, signal } from '@angular/core';
+import { Component, computed, inject, input, OnInit, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { OUTCOME_AXES } from '../../../../core/constants/outcome-axes';
+import { I18nService } from '../../../../core/i18n/i18n.service';
 import type { Decision, Scenario } from '../../../../core/db/database';
 
-const REGRET_OPTIONS = [
-  { score: 1, emoji: '😊', label: 'None' },
-  { score: 2, emoji: '🙂', label: 'Minor' },
-  { score: 3, emoji: '😐', label: 'Mixed' },
-  { score: 4, emoji: '😕', label: 'Regret' },
-  { score: 5, emoji: '😔', label: 'Strong' },
-];
+const REGRET_SCORES = [
+  { score: 1, emoji: '😊', key: 'none'   },
+  { score: 2, emoji: '🙂', key: 'minor'  },
+  { score: 3, emoji: '😐', key: 'mixed'  },
+  { score: 4, emoji: '😕', key: 'regret' },
+  { score: 5, emoji: '😔', key: 'strong' },
+] as const;
 
 @Component({
   selector: 'app-new-entry-sheet',
@@ -30,9 +31,13 @@ export class NewEntrySheetComponent implements OnInit {
   }>();
   cancel = output<void>();
 
+  readonly t = inject(I18nService).t;
   readonly axes = OUTCOME_AXES;
   readonly scores = [1, 2, 3, 4, 5];
-  readonly regretOptions = REGRET_OPTIONS;
+  readonly regretScores = REGRET_SCORES;
+  readonly regretOptions = computed(() =>
+    REGRET_SCORES.map(r => ({ ...r, label: this.t().regret[r.key] }))
+  );
 
   decisionId = signal('');
   scenarioId = signal('');

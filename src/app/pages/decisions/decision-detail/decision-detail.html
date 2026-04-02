@@ -10,25 +10,25 @@
           [ngModel]="d.status"
           (ngModelChange)="onStatusChange($event)"
           name="status">
-          <option value="active">Active</option>
-          <option value="decided">Decided</option>
-          <option value="archived">Archived</option>
+          <option value="active">{{ t().status.active }}</option>
+          <option value="decided">{{ t().status.decided }}</option>
+          <option value="archived">{{ t().status.archived }}</option>
         </select>
       </div>
-      <span class="decision-date">Added {{ d.createdAt | date: 'MMMM d, y' }}</span>
+      <span class="decision-date">{{ t().common.addedOn }} {{ d.createdAt | date: 'MMMM d, y' }}</span>
     </div>
 
     <!-- Scenarios -->
     <section class="detail-section">
       <div class="section-header">
-        <h2 class="section-title">Scenarios</h2>
-        <button class="btn-icon btn-icon--sm" aria-label="Add scenario" (click)="showScenarioSheet.set(true)">
+        <h2 class="section-title">{{ t().scenarios.pageTitle }}</h2>
+        <button class="btn-icon btn-icon--sm" [attr.aria-label]="t().scenarios.newTitle" (click)="showScenarioSheet.set(true)">
           <span class="material-symbols-rounded">add</span>
         </button>
       </div>
 
       @if (scenarios().length === 0) {
-        <p class="section-empty">No scenarios yet — add one to explore your options.</p>
+        <p class="section-empty">{{ t().scenarios.sectionEmpty }}</p>
       } @else {
         <div class="section-list">
           @for (s of scenarios(); track s.id) {
@@ -41,14 +41,14 @@
     <!-- Journal -->
     <section class="detail-section">
       <div class="section-header">
-        <h2 class="section-title">Journal</h2>
-        <button class="btn-icon btn-icon--sm" aria-label="Add journal entry" (click)="showJournalSheet.set(true)">
+        <h2 class="section-title">{{ t().journal.pageTitle }}</h2>
+        <button class="btn-icon btn-icon--sm" [attr.aria-label]="t().journal.newTitle" (click)="showJournalSheet.set(true)">
           <span class="material-symbols-rounded">add</span>
         </button>
       </div>
 
       @if (enrichedEntries().length === 0) {
-        <p class="section-empty">No entries yet — log a reflection once you've decided.</p>
+        <p class="section-empty">{{ t().journal.sectionEmpty }}</p>
       } @else {
         <div class="section-list">
           @for (item of enrichedEntries(); track item.entry.id) {

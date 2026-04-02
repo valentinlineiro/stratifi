@@ -1,8 +1,8 @@
 <div class="page">
   <div class="page-header">
-    <h1 class="page-title">Scenarios</h1>
+    <h1 class="page-title">{{ t().scenarios.pageTitle }}</h1>
     @if (decisions().length > 0) {
-      <button class="btn-icon" aria-label="New scenario" (click)="showSheet.set(true)">
+      <button class="btn-icon" [attr.aria-label]="t().scenarios.newTitle" (click)="showSheet.set(true)">
         <span class="material-symbols-rounded">add</span>
       </button>
     }
@@ -11,15 +11,15 @@
   @if (decisions().length === 0) {
     <div class="empty-state">
       <span class="material-symbols-rounded empty-icon">account_tree</span>
-      <p class="empty-title">No decisions yet</p>
-      <p class="empty-sub">Create a decision first, then branch into scenarios</p>
+      <p class="empty-title">{{ t().scenarios.noDecisionsTitle }}</p>
+      <p class="empty-sub">{{ t().scenarios.noDecisionsSub }}</p>
     </div>
   } @else if (totalScenarios() === 0) {
     <div class="empty-state">
       <span class="material-symbols-rounded empty-icon">fork_right</span>
-      <p class="empty-title">No scenarios yet</p>
-      <p class="empty-sub">Explore different paths for your decisions</p>
-      <button class="empty-cta" (click)="showSheet.set(true)">Add first scenario</button>
+      <p class="empty-title">{{ t().scenarios.emptyTitle }}</p>
+      <p class="empty-sub">{{ t().scenarios.emptySub }}</p>
+      <button class="empty-cta" (click)="showSheet.set(true)">{{ t().scenarios.emptyCta }}</button>
     </div>
   } @else {
     <div class="groups">

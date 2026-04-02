@@ -1,8 +1,8 @@
 @if (service.canInstall()) {
   <div class="install-banner">
     <span class="material-symbols-rounded install-icon">install_mobile</span>
-    <span class="install-text">Install Stratifi for quick access</span>
-    <button class="install-btn" (click)="service.install()">Install</button>
+    <span class="install-text">{{ t().app.installBanner }}</span>
+    <button class="install-btn" (click)="service.install()">{{ t().app.installBtn }}</button>
     <button class="install-close" aria-label="Dismiss" (click)="service.dismiss()">
       <span class="material-symbols-rounded">close</span>
     </button>

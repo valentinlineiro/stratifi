@@ -1,0 +1,88 @@
+{
+  "app": {
+    "name": "stratifi",
+    "installBanner": "Instala Stratifi para acceso rápido",
+    "installBtn": "Instalar"
+  },
+  "nav": {
+    "decisions": "Decisiones",
+    "scenarios": "Escenarios",
+    "journal": "Diario"
+  },
+  "common": {
+    "cancel": "Cancelar",
+    "all": "Todas",
+    "none": "Ninguno",
+    "addedOn": "Agregada",
+    "selectDecision": "Selecciona una decisión…"
+  },
+  "status": {
+    "active": "Activa",
+    "decided": "Decidida",
+    "archived": "Archivada"
+  },
+  "decisions": {
+    "pageTitle": "Decisiones",
+    "newTitle": "Nueva Decisión",
+    "question": "¿Qué estás decidiendo?",
+    "questionPlaceholder": "Ej. Cambiar de trabajo, Mudarse a otra ciudad…",
+    "context": "Contexto (opcional)",
+    "contextPlaceholder": "Breve trasfondo o qué está impulsando esta decisión…",
+    "createBtn": "Crear",
+    "emptyTitle": "Sin decisiones aún",
+    "emptySub": "Modela una decisión de vida y explora tus opciones",
+    "emptyCta": "Crea tu primera decisión",
+    "noFilterResult": "Sin decisiones con este estado",
+    "exportTitle": "Exportar datos",
+    "importTitle": "Importar datos",
+    "importError": "Error al importar — asegúrate de que el archivo es un respaldo válido de Stratifi."
+  },
+  "scenarios": {
+    "pageTitle": "Escenarios",
+    "newTitle": "Nuevo Escenario",
+    "decision": "Decisión",
+    "question": "¿De qué trata este escenario?",
+    "questionPlaceholder": "Ej. Aceptar la oferta, Quedarse y negociar…",
+    "notes": "Notas (opcional)",
+    "notesPlaceholder": "Supuestos clave, compromisos, riesgos…",
+    "outcomeScores": "Puntuaciones de resultado (opcional)",
+    "confidenceLabel": "Confianza",
+    "addBtn": "Agregar Escenario",
+    "emptyTitle": "Sin escenarios aún",
+    "emptySub": "Explora diferentes caminos para tus decisiones",
+    "emptyCta": "Agregar primer escenario",
+    "noDecisionsTitle": "Sin decisiones aún",
+    "noDecisionsSub": "Crea una decisión primero, luego agrega escenarios",
+    "sectionEmpty": "Sin escenarios aún — agrega uno para explorar tus opciones."
+  },
+  "outcomes": {
+    "financial": "Financiero",
+    "lifestyle": "Estilo de vida",
+    "risk": "Riesgo",
+    "alignment": "Alineación",
+    "actualTitle": "¿Cómo resultó realmente? (opcional)"
+  },
+  "journal": {
+    "pageTitle": "Diario",
+    "newTitle": "Nueva Entrada",
+    "chosenScenario": "Escenario elegido (opcional)",
+    "reflectionLabel": "Reflexión",
+    "reflectionPlaceholder": "¿Qué pasó? ¿Qué aprendiste? ¿Cómo te sientes al respecto ahora?",
+    "regretPrompt": "💡 ¿Tu yo de 80 años lamentaría no haber tomado otro camino?",
+    "feelingLabel": "¿Cómo te sientes al respecto?",
+    "saveBtn": "Guardar Entrada",
+    "emptyTitle": "Sin entradas aún",
+    "emptySub": "Reflexiona sobre una decisión que hayas tomado",
+    "emptyCta": "Escribe tu primera entrada",
+    "noDecisionsTitle": "Nada sobre lo que reflexionar aún",
+    "noDecisionsSub": "Crea una decisión primero, luego registra cómo resultó",
+    "sectionEmpty": "Sin entradas aún — registra una reflexión una vez que hayas decidido."
+  },
+  "regret": {
+    "none": "Ninguno",
+    "minor": "Menor",
+    "mixed": "Mixto",
+    "regret": "Arrepentimiento",
+    "strong": "Fuerte"
+  }
+}

@@ -1,6 +1,7 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { SwipeDeleteDirective } from '../../../../shared/directives/swipe-delete.directive';
+import { I18nService } from '../../../../core/i18n/i18n.service';
 import type { JournalEntry } from '../../../../core/db/database';
 
 export interface EnrichedEntry {
@@ -10,7 +11,7 @@ export interface EnrichedEntry {
 }
 
 const REGRET_EMOJIS = ['', '😊', '🙂', '😐', '😕', '😔'];
-const REGRET_LABELS = ['', 'No regret', 'Minor doubts', 'Mixed feelings', 'Regret it', 'Strong regret'];
+const REGRET_KEYS = ['', 'none', 'minor', 'mixed', 'regret', 'strong'] as const;
 
 @Component({
   selector: 'app-journal-entry-card',
@@ -19,9 +20,13 @@ const REGRET_LABELS = ['', 'No regret', 'Minor doubts', 'Mixed feelings', 'Regre
   styleUrl: './journal-entry-card.scss',
 })
 export class JournalEntryCardComponent {
+  private readonly i18n = inject(I18nService);
   data = input.required<EnrichedEntry>();
   delete = output<string>();
 
   regretEmoji(score: number): string { return REGRET_EMOJIS[score] ?? ''; }
-  regretLabel(score: number): string { return REGRET_LABELS[score] ?? ''; }
+  regretLabel(score: number): string {
+    const key = REGRET_KEYS[score];
+    return key ? this.i18n.t().regret[key] : '';
+  }
 }

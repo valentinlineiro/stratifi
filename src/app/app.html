@@ -1,20 +1,25 @@
-<div class="app-shell">
-  <header class="app-header">
-    @if (header.backPath()) {
-      <a class="btn-back" [routerLink]="header.backPath()" aria-label="Go back">
-        <span class="material-symbols-rounded">arrow_back</span>
-      </a>
-    }
-    <span class="app-title" [class.is-logo]="!header.backPath()">
-      {{ header.title() }}
-    </span>
-  </header>
+@if (i18n.ready()) {
+  <div class="app-shell">
+    <header class="app-header">
+      @if (header.backPath()) {
+        <a class="btn-back" [routerLink]="header.backPath()" aria-label="Go back">
+          <span class="material-symbols-rounded">arrow_back</span>
+        </a>
+      }
+      <span class="app-title" [class.is-logo]="!header.backPath()">
+        {{ header.title() }}
+      </span>
+      <button class="btn-lang" (click)="i18n.toggle()" [attr.aria-label]="'Switch language'">
+        {{ i18n.lang() === 'en' ? 'ES' : 'EN' }}
+      </button>
+    </header>
 
-  <app-install-prompt />
+    <app-install-prompt />
 
-  <main class="app-content">
-    <router-outlet />
-  </main>
+    <main class="app-content">
+      <router-outlet />
+    </main>
 
-  <app-bottom-nav />
-</div>
+    <app-bottom-nav />
+  </div>
+}

@@ -1,11 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-
-interface NavItem {
-  label: string;
-  path: string;
-  icon: string;
-}
+import { I18nService } from '../../../core/i18n/i18n.service';
 
 @Component({
   selector: 'app-bottom-nav',
@@ -14,9 +9,12 @@ interface NavItem {
   styleUrl: './bottom-nav.scss',
 })
 export class BottomNavComponent {
-  readonly items: NavItem[] = [
-    { label: 'Decisions', path: '/decisions', icon: 'grid_view' },
-    { label: 'Scenarios', path: '/scenarios', icon: 'account_tree' },
-    { label: 'Journal',   path: '/journal',   icon: 'menu_book' },
-  ];
+  private readonly i18n = inject(I18nService);
+  readonly t = this.i18n.t;
+
+  readonly items = computed(() => [
+    { label: this.t().nav.decisions, path: '/decisions', icon: 'grid_view' },
+    { label: this.t().nav.scenarios, path: '/scenarios', icon: 'account_tree' },
+    { label: this.t().nav.journal,   path: '/journal',   icon: 'menu_book' },
+  ]);
 }

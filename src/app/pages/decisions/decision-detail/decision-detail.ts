@@ -6,6 +6,7 @@ import { DecisionService } from '../../../core/services/decision.service';
 import { ScenarioService } from '../../../core/services/scenario.service';
 import { JournalService } from '../../../core/services/journal.service';
 import { HeaderService } from '../../../core/services/header.service';
+import { I18nService } from '../../../core/i18n/i18n.service';
 import { ScenarioCardComponent } from '../../scenarios/components/scenario-card/scenario-card';
 import { NewScenarioSheetComponent } from '../../scenarios/components/new-scenario-sheet/new-scenario-sheet';
 import { JournalEntryCardComponent, type EnrichedEntry } from '../../journal/components/journal-entry-card/journal-entry-card';
@@ -28,6 +29,7 @@ import type { Decision } from '../../../core/db/database';
 export class DecisionDetailPage implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly header = inject(HeaderService);
+  readonly t = inject(I18nService).t;
   private readonly decisionService = inject(DecisionService);
   private readonly scenarioService = inject(ScenarioService);
   private readonly journalService = inject(JournalService);

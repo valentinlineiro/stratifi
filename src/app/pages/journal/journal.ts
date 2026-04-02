@@ -2,6 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { DecisionService } from '../../core/services/decision.service';
 import { ScenarioService } from '../../core/services/scenario.service';
 import { JournalService } from '../../core/services/journal.service';
+import { I18nService } from '../../core/i18n/i18n.service';
 import { JournalEntryCardComponent, type EnrichedEntry } from './components/journal-entry-card/journal-entry-card';
 import { NewEntrySheetComponent } from './components/new-entry-sheet/new-entry-sheet';
 
@@ -15,6 +16,7 @@ export class JournalPage {
   private readonly decisionService = inject(DecisionService);
   private readonly scenarioService = inject(ScenarioService);
   private readonly journalService = inject(JournalService);
+  readonly t = inject(I18nService).t;
 
   readonly decisions = this.decisionService.decisions;
   readonly scenarios = this.scenarioService.scenarios;

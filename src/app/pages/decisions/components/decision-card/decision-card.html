@@ -8,7 +8,7 @@
   <footer class="card-footer">
     <div class="footer-left">
       <span class="card-date">{{ decision().createdAt | date: 'MMM d, y' }}</span>
-      <span class="status-badge status-badge--{{ decision().status }}">{{ decision().status }}</span>
+      <span class="status-badge status-badge--{{ decision().status }}">{{ t().status[decision().status] }}</span>
     </div>
     <button
       class="btn-delete"

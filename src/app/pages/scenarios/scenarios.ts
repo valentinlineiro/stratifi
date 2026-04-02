@@ -1,6 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { DecisionService } from '../../core/services/decision.service';
 import { ScenarioService } from '../../core/services/scenario.service';
+import { I18nService } from '../../core/i18n/i18n.service';
 import { ScenarioCardComponent } from './components/scenario-card/scenario-card';
 import { NewScenarioSheetComponent } from './components/new-scenario-sheet/new-scenario-sheet';
 
@@ -13,6 +14,7 @@ import { NewScenarioSheetComponent } from './components/new-scenario-sheet/new-s
 export class ScenariosPage {
   private readonly decisionService = inject(DecisionService);
   private readonly scenarioService = inject(ScenarioService);
+  readonly t = inject(I18nService).t;
 
   readonly decisions = this.decisionService.decisions;
   readonly showSheet = signal(false);

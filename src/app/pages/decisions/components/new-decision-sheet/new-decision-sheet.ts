@@ -1,5 +1,6 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, inject, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { I18nService } from '../../../../core/i18n/i18n.service';
 
 @Component({
   selector: 'app-new-decision-sheet',
@@ -8,6 +9,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './new-decision-sheet.scss',
 })
 export class NewDecisionSheetComponent {
+  readonly t = inject(I18nService).t;
   confirm = output<{ title: string; description: string }>();
   cancel = output<void>();
 

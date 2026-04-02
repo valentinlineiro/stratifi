@@ -1,6 +1,7 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { RadarChartComponent } from '../../../../shared/components/radar-chart/radar-chart';
 import { SwipeDeleteDirective } from '../../../../shared/directives/swipe-delete.directive';
+import { I18nService } from '../../../../core/i18n/i18n.service';
 import type { Scenario } from '../../../../core/db/database';
 
 @Component({
@@ -10,6 +11,7 @@ import type { Scenario } from '../../../../core/db/database';
   styleUrl: './scenario-card.scss',
 })
 export class ScenarioCardComponent {
+  readonly t = inject(I18nService).t;
   scenario = input.required<Scenario>();
   delete = output<string>();
 

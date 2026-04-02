@@ -1,0 +1,88 @@
+{
+  "app": {
+    "name": "stratifi",
+    "installBanner": "Install Stratifi for quick access",
+    "installBtn": "Install"
+  },
+  "nav": {
+    "decisions": "Decisions",
+    "scenarios": "Scenarios",
+    "journal": "Journal"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "all": "All",
+    "none": "None",
+    "addedOn": "Added",
+    "selectDecision": "Select a decision…"
+  },
+  "status": {
+    "active": "Active",
+    "decided": "Decided",
+    "archived": "Archived"
+  },
+  "decisions": {
+    "pageTitle": "Decisions",
+    "newTitle": "New Decision",
+    "question": "What are you deciding?",
+    "questionPlaceholder": "e.g. Change careers, Move to another city…",
+    "context": "Context (optional)",
+    "contextPlaceholder": "Brief background or what's driving this decision…",
+    "createBtn": "Create",
+    "emptyTitle": "No decisions yet",
+    "emptySub": "Model a life decision and explore your options",
+    "emptyCta": "Create your first decision",
+    "noFilterResult": "No decisions with this status",
+    "exportTitle": "Export data",
+    "importTitle": "Import data",
+    "importError": "Import failed — make sure the file is a valid Stratifi backup."
+  },
+  "scenarios": {
+    "pageTitle": "Scenarios",
+    "newTitle": "New Scenario",
+    "decision": "Decision",
+    "question": "What's this scenario?",
+    "questionPlaceholder": "e.g. Accept the offer, Stay and negotiate…",
+    "notes": "Notes (optional)",
+    "notesPlaceholder": "Key assumptions, trade-offs, risks…",
+    "outcomeScores": "Outcome scores (optional)",
+    "confidenceLabel": "Confidence",
+    "addBtn": "Add Scenario",
+    "emptyTitle": "No scenarios yet",
+    "emptySub": "Explore different paths for your decisions",
+    "emptyCta": "Add first scenario",
+    "noDecisionsTitle": "No decisions yet",
+    "noDecisionsSub": "Create a decision first, then branch into scenarios",
+    "sectionEmpty": "No scenarios yet — add one to explore your options."
+  },
+  "outcomes": {
+    "financial": "Financial",
+    "lifestyle": "Lifestyle",
+    "risk": "Risk",
+    "alignment": "Alignment",
+    "actualTitle": "How did it actually go? (optional)"
+  },
+  "journal": {
+    "pageTitle": "Journal",
+    "newTitle": "New Journal Entry",
+    "chosenScenario": "Chosen scenario (optional)",
+    "reflectionLabel": "Reflection",
+    "reflectionPlaceholder": "What happened? What did you learn? How do you feel about this decision now?",
+    "regretPrompt": "💡 Would 80-year-old you regret not taking a different path?",
+    "feelingLabel": "How do you feel about it?",
+    "saveBtn": "Save Entry",
+    "emptyTitle": "No entries yet",
+    "emptySub": "Reflect on a decision you've made",
+    "emptyCta": "Write first entry",
+    "noDecisionsTitle": "Nothing to reflect on yet",
+    "noDecisionsSub": "Create a decision first, then log how it played out",
+    "sectionEmpty": "No entries yet — log a reflection once you've decided."
+  },
+  "regret": {
+    "none": "None",
+    "minor": "Minor",
+    "mixed": "Mixed",
+    "regret": "Regret",
+    "strong": "Strong"
+  }
+}

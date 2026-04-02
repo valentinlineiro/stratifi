@@ -1,6 +1,7 @@
-import { Component, input, OnInit, output, signal } from '@angular/core';
+import { Component, inject, input, OnInit, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { OUTCOME_AXES } from '../../../../core/constants/outcome-axes';
+import { I18nService } from '../../../../core/i18n/i18n.service';
 import type { Decision } from '../../../../core/db/database';
 
 @Component({
@@ -10,6 +11,7 @@ import type { Decision } from '../../../../core/db/database';
   styleUrl: './new-scenario-sheet.scss',
 })
 export class NewScenarioSheetComponent implements OnInit {
+  readonly t = inject(I18nService).t;
   decisions = input.required<Decision[]>();
   preselectedDecisionId = input('');
   confirm = output<{ decisionId: string; title: string; notes: string; outcomes: Record<string, number>; confidence: number }>();
